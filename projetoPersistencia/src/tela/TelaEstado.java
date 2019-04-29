@@ -34,7 +34,6 @@ public class TelaEstado {
 				System.out.println("INSERIR NOVO ESTADO \n\n\n\n");
 				System.out.println("Nome do estado:");
 				String nome = scan.nextLine();
-				
 				System.out.println("Sigla do estado:");
 				String sigla = scan.nextLine();
 				
@@ -74,6 +73,7 @@ public class TelaEstado {
 				listarCadastros();
 				
 			}
+
 			
 			System.out.println("Deseja realmente continuar? (s/n)");
 			

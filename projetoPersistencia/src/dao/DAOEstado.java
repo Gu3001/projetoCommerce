@@ -10,23 +10,25 @@ import entidade.Estado;
 import fabrica.Fabrica;
 
 public class DAOEstado {
-	private EntityManager gerenciador;
+	private EntityManager gerenciador; //responsável em gerenciar entidade, possui CRUD, representa a conexao com o BD
 	private EntityTransaction transacao;
 	
 	public Estado inserir(Estado estado) {
 		try {
 			
 			EntityManagerFactory fabrica = Fabrica.get();
-			gerenciador = fabrica.createEntityManager();
-			transacao = gerenciador.getTransaction();
+			gerenciador = fabrica.createEntityManager();//cria gerenciador de entidade
+			transacao = gerenciador.getTransaction();//criar controlador de transações
 			
-			transacao.begin();
-			gerenciador.persist(estado);
-			transacao.commit();
+			transacao.begin();//inicia a transação
+			gerenciador.persist(estado);//salvar/inserir a entidade
+			transacao.commit();//confirma transação
 			
 		}catch(Exception e) {
-			e.printStackTrace();
-			transacao.rollback();
+			e.printStackTrace();//imprime o erro
+			transacao.rollback();//cancela a transação
+		}finally {
+			gerenciador.close();
 		}return estado;
 	}
 	public Estado excluir(Estado estado) {
@@ -46,7 +48,9 @@ public class DAOEstado {
 		} catch (Exception e) {
 			e.printStackTrace();
 			transacao.rollback();
-		}return estado;
+		}finally {
+			gerenciador.close();
+		}return estado;//retorna o estado salvo  
 		
 	}
 	public Estado alterar(Estado estado) {
@@ -62,6 +66,8 @@ public class DAOEstado {
 		}catch(Exception e){
 			e.printStackTrace();
 			transacao.rollback();
+		}finally {
+			gerenciador.close();
 		}return estado;
 	}
 	
@@ -71,31 +77,48 @@ public class DAOEstado {
 		try {
 			EntityManagerFactory fabrica = Fabrica.get();
 			gerenciador = fabrica.createEntityManager();
-			
+		
 			return gerenciador.createQuery("from Estado").getResultList();
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 			transacao.rollback();
+		}finally {
+			gerenciador.close();
 		}
 		return null;
 
 	}
-	
-//	public Estado deletar(Estado estado) {
+	public Estado buscarEspecifico(Estado estado) {
+		try {
+			
+			EntityManagerFactory fabrica = Fabrica.get();
+			gerenciador = fabrica.createEntityManager();
+			estado = gerenciador.find(Estado.class, estado.getNome());
+			transacao.commit();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			transacao.rollback();
+		}finally {
+			gerenciador.close();
+		}
+		return estado;
+	}
+//	public Estado buscaEspecifico(Estado estado) {
 //		try {
 //			EntityManagerFactory fabrica = Fabrica.get();
 //			gerenciador = fabrica.createEntityManager();
 //			transacao = gerenciador.getTransaction();
 //			
 //			transacao.begin();
-//			gerenciador.remove();
+//			estado = gerenciador.find(Estado.class, estado.getId());
 //			transacao.commit();
-//			
 //		}catch(Exception e) {
 //			e.printStackTrace();
 //			transacao.rollback();
-//		}
-//		return estado;
+//		}return estado;
 //	}
+
 }
