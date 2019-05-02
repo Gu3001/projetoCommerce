@@ -94,13 +94,15 @@ public class TelaCidade {
 	}
 	public void listarCadastrosCidade() {
 		
-		
 		System.out.println("-----------------------------------------");
 		System.out.println("LISTAR TODAS CIDADES");
 		List<Cidade> cid = daocidade.buscar(); //estudar melhor o percorrer da lista
 		
+		
+		
 		for(Cidade cidade : cid) {
-			System.out.println("Id: "+cidade.getId()+" Cidade: "+cidade.getNome()+" Estado: "+cidade.getEstado());
+	
+			System.out.println("Id: "+cidade.getId()+" Cidade: "+cidade.getNome()+" Estado: "+cidade.getEstado().getSigla());
 		}
 	}
 	public void listarCadastrosEstado() {
