@@ -3,10 +3,15 @@ package principal;
 import java.util.Scanner;
 
 import tela.TelaEstado;
+import tela.TelaFornecedor;
+import tela.TelaItensCompra;
+import tela.TelaItensVenda;
 import tela.TelaPessoa;
+import tela.TelaProduto;
 import tela.TelaVenda;
 import tela.TelaCidade;
 import tela.TelaCliente;
+import tela.TelaCompra;
 
 //import javax.persistence.EntityManager;
 //import javax.persistence.EntityManagerFactory;
@@ -23,6 +28,11 @@ public class Principal {
 		System.out.println("3 - Gerenciar pessoa");
 		System.out.println("4 - Gerenciar cliente");
 		System.out.println("5 - Gerenciar venda");
+		System.out.println("6 - Gerenciar itens-venda");
+		System.out.println("7 - Gerenciar fornecedor");
+		System.out.println("8 - Gerenciar compra");
+		System.out.println("9 - Gerenciar itens-compra");
+		System.out.println("10 - Gerenciar Produtos");
 		int op = scan.nextInt();
 		scan.nextLine();
 		
@@ -40,6 +50,21 @@ public class Principal {
 		}
 		if(op ==5){
 			TelaVenda venda = new TelaVenda();
+		}
+		if(op ==6){
+			TelaItensVenda itensVenda = new TelaItensVenda();
+		}
+		if (op==7) {
+			TelaFornecedor fornecedor = new TelaFornecedor();
+		}
+		if (op==8) {
+			TelaCompra compra = new TelaCompra();
+		}
+		if (op==9) {
+			TelaItensCompra itensCompra = new TelaItensCompra();
+		}
+		if (op==10) {
+			TelaProduto produto = new TelaProduto();
 		}
 	}
 	

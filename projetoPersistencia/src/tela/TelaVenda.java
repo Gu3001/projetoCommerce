@@ -42,7 +42,7 @@ public class TelaVenda {
 				venda.setDtVenda(dtVenda);
 				
 				listarCadastrosCliente();
-				System.out.println("Insira o ID da Venda: ");
+				System.out.println("Insira o ID do cliente: ");
 				long id = scan.nextLong();
 				cliente.setId(id);
 				venda.setCliente(cliente);
@@ -56,7 +56,7 @@ public class TelaVenda {
 				System.out.println("Insira o id da venda a ser excluida: ");
 				venda.setId( scan.nextLong() );
 				daovenda.excluir(venda);
-	
+				
 			}
 			if (op ==3) { //arrumar
 				listarCadastrosVenda();
